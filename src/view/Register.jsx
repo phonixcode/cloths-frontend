@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { register } from '../utils/apiRequests';
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Register() {
   const navigate = useNavigate();
@@ -13,6 +14,12 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!name || !email || !password) {
+      toast.error('All fields are required!');
+      return;
+    }
+
     try {
       await register(name, email, password);
       toast.success('Registration successful')
@@ -25,24 +32,31 @@ function Register() {
   };
 
   return (
+    <div className="small-container cart-page">
+
     <div>
       <h2>Register</h2>
+      <p></p>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name:</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+          <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div>
           <label>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div>
           <label>Password:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
-        <button type="submit">Register</button>
+        <div>
+             <span>Already have an account? <Link to="/login">Login</Link></span>
+          </div>
+        <button className="btn btn-checkout" type="submit">Register</button>
         {error && <p>{error}</p>}
       </form>
+    </div>
     </div>
   );
 }

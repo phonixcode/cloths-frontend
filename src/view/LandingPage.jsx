@@ -1,18 +1,17 @@
 import React from 'react';
 import ProductPage from '../components/Product';
-import CartIcon from '../components/CartIcon'; 
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { Outlet } from 'react-router-dom';
 
 function LandingPage() {
   return (
-    <div className="landing-page">
-      <header className="header">
-        <h1>Our Amazing Products</h1>
-          <CartIcon />
-      </header>
-      <div className="content">
-        <ProductPage />
-      </div>
-    </div>
+    <>
+    <Header/>
+    <Outlet />
+    {/* <Footer /> */}
+    </>
+    
   );
 }
 

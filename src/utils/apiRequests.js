@@ -10,6 +10,15 @@ export const getProducts = async () => {
   }
 };
 
+export const getProductDetail = async (productId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/products/${productId}`);
+    return response.data.data;
+  } catch (error) {
+    throw new Error('Error fetching products');
+  }
+};
+
 export const login = async (email, password) => {
   try {
     const response = await axios.post(`${BASE_URL}/login`, { email, password });
