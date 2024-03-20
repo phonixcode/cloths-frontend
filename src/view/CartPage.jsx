@@ -8,6 +8,7 @@ import {
 } from "../features/cart/cartSlice";
 
 function CartPage() {
+  const loginState = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,14 +27,12 @@ function CartPage() {
   };
 
   const handleCheckout = () => {
-    const isSignedIn = false;
-
-    if (isSignedIn) {
+    if (loginState) {
       // Proceed with checkout process
-      console.log("Proceeding with checkout...");
+      navigate('/checkout');
     } else {
       // Redirect to login screen if user is not signed in
-      navigate('/login');
+      navigate('/login', { state: { returnTo: '/cart' } });
     }
   };
 

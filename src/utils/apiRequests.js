@@ -9,3 +9,36 @@ export const getProducts = async () => {
     throw new Error('Error fetching products');
   }
 };
+
+export const login = async (email, password) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/login`, { email, password });
+    return response.data;
+  } catch (error) {
+    throw new Error('Login failed. Please try again.');
+  }
+};
+
+export const register = async (name, email, password) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/register`, { name, email, password });
+    return response.data;
+  } catch (error) {
+    throw new Error('Registration failed. Please try again.');
+  }
+};
+
+export const placeOrder = async (orderData) => {
+  try {
+    const authToken = localStorage.getItem("userToken");
+    const response = await axios.post(`${BASE_URL}/orders`, orderData, {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        'content-type': 'application/x-www-form-urlencoded',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error('Order failed. Please try again.');
+  }
+};

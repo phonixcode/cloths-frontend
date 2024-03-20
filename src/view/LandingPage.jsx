@@ -1,4 +1,3 @@
-// LandingPage.jsx
 import React from 'react';
 import ProductPage from '../components/Product';
 import CartIcon from '../components/CartIcon'; 
