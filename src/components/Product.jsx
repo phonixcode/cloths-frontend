@@ -43,7 +43,7 @@ function ProductPage() {
           {products.map(product => (
             <div className="col-4" key={product.id}>
               <Link to={`/products/${product.id}`}>
-                <img width={100} height={200} src="https://img.freepik.com/free-photo/black-woman-trendy-grey-leather-jacket-posing-beige-background-studio-winter-autumn-fashion-look_273443-141.jpg" alt="" />
+                <img width={100} height={200} src={product.image} alt="" />
                 <h4>{product.title}</h4>
                 <p>₦{product.price.toFixed(2)}</p>
               </Link>

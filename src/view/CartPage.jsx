@@ -56,7 +56,7 @@ function CartPage() {
               <tr key={item.id}>
                 <td>
                   <div className="cart-info">
-                    <img src="https://img.freepik.com/free-photo/black-woman-trendy-grey-leather-jacket-posing-beige-background-studio-winter-autumn-fashion-look_273443-141.jpg" alt="" />
+                    <img src={item.image} alt="" />
                     <div>
                       <p>{item.title}</p>
                       <small>Price : ₦{item.price.toFixed(2)}</small><br />

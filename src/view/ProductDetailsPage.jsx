@@ -32,12 +32,11 @@ function ProductDetailsPage() {
     }, [productId]);
 
     const handleAddToCart = () => {
-
         if (product.stock > 0) {
             dispatch(addProductToCart({ product, quantity: 1 }));
-          } else {
+        } else {
             toast.error("Product out of stock!");
-          }
+        }
     };
 
     if (loading) {
@@ -52,7 +51,7 @@ function ProductDetailsPage() {
         <div className="small-container single-product">
             <div className="row">
                 <div className="col-2">
-                    <img width={100} height={400} src="https://img.freepik.com/free-photo/black-woman-trendy-grey-leather-jacket-posing-beige-background-studio-winter-autumn-fashion-look_273443-141.jpg" width="100%" alt="" id="productImg" />
+                    <img width="100%" height={400} src={product.image} alt="" id="productImg" />
 
                 </div>
                 <div className="col-2">
@@ -60,30 +59,36 @@ function ProductDetailsPage() {
                     <h4>₦{product.price.toFixed(2)}</h4>
 
                     <div className="row">
-                        <div className="col-1">
-                            <select value={selectedSize} onChange={(e) => setSelectedSize(e.target.value)}>
-                                <option value="">Select Size</option>
-                                {product.sizes.map((size) => (
-                                    <option key={size} value={size}>{size}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="col-1">
-                            <select value={selectedColor} onChange={(e) => setSelectedColor(e.target.value)}>
-                                <option value="">Select Color</option>
-                                {product.colors.map((color) => (
-                                    <option key={color} value={color}>{color}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="col-1">
-                            <select value={selectedGender} onChange={(e) => setSelectedGender(e.target.value)}>
-                                <option value="">Select Gender</option>
-                                {product.genders.map((gender) => (
-                                    <option key={gender} value={gender}>{gender}</option>
-                                ))}
-                            </select>
-                        </div>
+                        {product.sizes && product.sizes.length > 0 && (
+                            <div className="col-1">
+                                <select value={selectedSize} onChange={(e) => setSelectedSize(e.target.value)}>
+                                    <option value="">Select Size</option>
+                                    {product.sizes.map((size) => (
+                                        <option key={size} value={size}>{size}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        )}
+                        {product.colors && product.colors.length > 0 && (
+                            <div className="col-1">
+                                <select value={selectedColor} onChange={(e) => setSelectedColor(e.target.value)}>
+                                    <option value="">Select Color</option>
+                                    {product.colors.map((color) => (
+                                        <option key={color} value={color}>{color}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        )}
+                        {product.genders && product.genders.length > 0 && (
+                            <div className="col-1">
+                                <select value={selectedGender} onChange={(e) => setSelectedGender(e.target.value)}>
+                                    <option value="">Select Gender</option>
+                                    {product.genders.map((gender) => (
+                                        <option key={gender} value={gender}>{gender}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        )}
                     </div>
 
                     <button onClick={handleAddToCart} className="btn btn-checkout">Add to Cart</button>
@@ -98,4 +103,3 @@ function ProductDetailsPage() {
 }
 
 export default ProductDetailsPage;
-
